@@ -162,8 +162,8 @@ def main():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
     # Load datasets (ImageNet-1K)
-    train_dataset = load_dataset("evanarlian/imagenet_1k_resized_256", split="train")
-    val_dataset = load_dataset("evanarlian/imagenet_1k_resized_256", split="val")
+    train_dataset = load_dataset("evanarlian/imagenet_1k_resized_256", split="train", trust_remote_code=True)
+    val_dataset = load_dataset("evanarlian/imagenet_1k_resized_256", split="val", trust_remote_code=True)
 
     # Shuffle the datasets
     train_dataset = train_dataset.shuffle()

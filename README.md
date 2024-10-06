@@ -32,17 +32,55 @@ The pretraining uses the **ImageNet-1k** dataset, which consists of 1.2 million 
 
 ## Pretraining
 
-To start the pretraining process, simply run the `pre.py` script:
+To start the pretraining process, make sure you have the following prerequisites:
+
+### Prerequisites
+1. **GPU Support**: The pretraining is optimized to run on systems with NVIDIA GPUs. Ensure CUDA and the necessary drivers are installed on your machine.
+   - CUDA Version: 12.4 (or compatible version)
+   - CuDNN: Version 9
+
+2. **Environment Setup**:
+   - Ensure the correct version of **PyTorch** with GPU support is installed.
+   - Your system should have enough GPU memory to handle the specified batch size. Modify the batch size if necessary.
+
+3. **Hugging Face Authentication**:
+   - You will need to authenticate with Hugging Face to access the ImageNet-1k dataset. Set your Hugging Face token in the environment:
+
+   ```bash
+   export HUGGINGFACE_TOKEN=<your_huggingface_token>
+   ```
+
+### Starting Pretraining
+
+Once the environment is set up, and the GPU is ready, run the `pre.py` script to begin pretraining:
 
 ```bash
 python pre.py
 ```
 
-This script:
-- Initializes the EfficientViT-B4 model.
-- Sets up the data pipelines with transformations (resizing, augmentation, normalization).
-- Configures the optimizer (AdamW) and the learning rate scheduler.
-- Begins the pretraining from scratch or resumes from the last saved checkpoint.
+This script will:
+- Initialize the **EfficientViT-B4** model.
+- Set up the data pipelines with transformations (resizing, augmentation, normalization).
+- Configure the optimizer (AdamW) and the learning rate scheduler.
+- Start pretraining from scratch or resume from the last saved checkpoint if any.
+
+### Running in a Docker Environment
+
+If you're using Docker for pretraining, follow these steps:
+
+1. **Pull the Docker Image**:
+
+   ```bash
+   docker pull ghcr.io/anto18671/efficientvit-b4:latest
+   ```
+
+2. **Run the Docker Container with GPU Support**:
+
+   ```bash
+   docker run --gpus all --env HUGGINGFACE_TOKEN=<your_huggingface_token> ghcr.io/anto18671/efficientvit-b4:latest
+   ```
+
+Ensure that the Docker setup has GPU support enabled. Use the `--gpus all` flag to allow Docker to utilize the available GPUs.
 
 ### Checkpoints
 
@@ -61,7 +99,7 @@ The **EfficientViT-B4** model is part of the EfficientViT family, designed for o
 
 - **Optimizer**: AdamW with weight decay
 - **Learning Rate**: 1e-4 (with exponential decay)
-- **Batch Size**: 42
+- **Batch Size**: 42 (adjustable based on GPU memory)
 - **Gradient Accumulation**: 3 steps to control memory usage
 - **Epochs**: 16
 - **Data Augmentation**: Resize, Color Jitter, Random Horizontal Flip, and Normalization
