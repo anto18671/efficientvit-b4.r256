@@ -71,13 +71,13 @@ If you're using Docker for pretraining, follow these steps:
 1. **Pull the Docker Image**:
 
    ```bash
-   docker pull ghcr.io/anto18671/efficientvit-b4:latest
+   docker pull ghcr.io/anto18671/efficientvit-b4.r256:latest
    ```
 
 2. **Run the Docker Container with GPU Support**:
 
    ```bash
-   docker run --gpus all --env HUGGINGFACE_TOKEN=<your_huggingface_token> ghcr.io/anto18671/efficientvit-b4:latest
+   docker run --gpus all --env HUGGINGFACE_TOKEN=<your_huggingface_token> ghcr.io/anto18671/efficientvit-b4.r256:latest
    ```
 
 Ensure that the Docker setup has GPU support enabled. Use the `--gpus all` flag to allow Docker to utilize the available GPUs.
