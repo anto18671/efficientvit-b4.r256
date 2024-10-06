@@ -2,12 +2,6 @@
 
 This repository contains the code and configuration for pretraining the **EfficientViT-B4** model on the **ImageNet-1k** dataset. The model is designed for efficient vision processing with optimized performance and resource utilization.
 
-## Repository Overview
-
-- `pre.py`: Main script to activate the pretraining of the EfficientViT-B4 model using the ImageNet-1k dataset.
-- `checkpoints/`: Directory for saving model checkpoints during training (best and latest).
-- `README.md`: Project description and usage guide.
-
 ## Installation
 
 Clone the repository and install the required dependencies:
